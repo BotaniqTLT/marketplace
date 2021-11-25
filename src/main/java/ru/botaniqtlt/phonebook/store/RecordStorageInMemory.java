@@ -14,7 +14,7 @@ import java.util.List;
  * - счетчик идентификаторов
  * - методы интерфейса RecordStorage
  */
-@Component
+//@Component
 public class RecordStorageInMemory implements RecordStorage {
 
     private List<PhoneRecord> list;
