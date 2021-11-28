@@ -1,5 +1,6 @@
 package ru.botaniqtlt.phonebook;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,24 +8,34 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.botaniqtlt.phonebook.store.PhoneRecord;
-import ru.botaniqtlt.phonebook.store.RecordStorage;
+import ru.botaniqtlt.phonebook.store.RecordStoragePageable;
 import ru.botaniqtlt.phonebook.store.SelectQuery;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class PhoneController {
 
-    private RecordStorage recordStorage;
+    private RecordStoragePageable recordStorage;
 
-    public PhoneController(RecordStorage recordStorage) {
+    public PhoneController(RecordStoragePageable recordStorage) {
         this.recordStorage = recordStorage;
     }
 
     @GetMapping("/")
     public String index(Model model,  SelectQuery select) {
-        model.addAttribute("list",recordStorage.find(select));
+        Page<PhoneRecord> page = recordStorage.findPage(select);
+        model.addAttribute("list", page);
         model.addAttribute("select",select);
+        int totalPages = page.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
         return "index";
     }
 

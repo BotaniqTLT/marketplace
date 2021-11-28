@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css"/>
     <title>Title</title>
 </head>
 <body>
@@ -15,9 +17,9 @@
 </form>
 <table>
     <tr>
-        <th>Имя</th>
-        <th>Фамилия</th>
-        <th>Телефон</th>
+        <th> <a th:href="@{?sort=f_{order}(order=${select.firstNameOrder}=='asc'?'d':'a')} ">Имя</a></th>
+        <th><a th:href="@{?sort=l_{order}(order=${select.lastNameOrder}=='asc'?'d':'a')} ">Фамилия </a></th>
+        <th> <a th:href="@{?sort=p_{order}(order=${select.phoneOrder}=='asc'?'d':'a')} ">Телефон </a></th>
         <th>Действие</th>
     </tr>
     <tr th:each="item : ${list}">
@@ -30,7 +32,12 @@
     </tr>
 
 </table>
-
+<b th:if="${list.totalPages > 0}" class="pagination"
+     th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/(size=${list.size}, page=${pageNumber},sort=${select.sort})}"
+       th:text=${pageNumber}
+       th:class="${pageNumber==list.number + 1} ? active"></a>
+</b>
 
 </body>
 </html>

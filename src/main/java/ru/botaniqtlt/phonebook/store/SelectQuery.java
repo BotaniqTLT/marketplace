@@ -5,13 +5,25 @@ package ru.botaniqtlt.phonebook.store;
  */
 public class SelectQuery {
 
-    private  Long id;
+    private Long id;
 
-    private  String firstNameSearch;
+    private String firstNameSearch;
 
-    private  String lastNameSearch;
+    private String lastNameSearch;
 
-    private  String phoneSearch;
+    private String phoneSearch;
+
+    private String firstNameOrder;
+
+    private String lastNameOrder;
+
+    private String phoneOrder;
+
+    private Integer page=1;
+
+    private Integer size=10;
+
+    private String sort="f_a";
 
     public SelectQuery() {
         this(null);
@@ -48,6 +60,30 @@ public class SelectQuery {
         return phoneSearch;
     }
 
+    public String getFirstNameOrder() {
+        return firstNameOrder;
+    }
+
+    public String getLastNameOrder() {
+        return lastNameOrder;
+    }
+
+    public String getPhoneOrder() {
+        return phoneOrder;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -62,5 +98,48 @@ public class SelectQuery {
 
     public void setPhoneSearch(String phoneSearch) {
         this.phoneSearch = phoneSearch;
+    }
+
+    public void setFirstNameOrder(String firstNameOrder) {
+        this.firstNameOrder = firstNameOrder;
+    }
+
+    public void setLastNameOrder(String lastNameOrder) {
+        this.lastNameOrder = lastNameOrder;
+    }
+
+    public void setPhoneOrder(String phoneOrder) {
+        this.phoneOrder = phoneOrder;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+        if(sort !=null){
+            mapSort();
+        }
+    }
+
+    private void mapSort() {
+        if(sort.startsWith("f_")){
+            firstNameOrder= getOrdering();
+        }
+        if(sort.startsWith("l_")){
+            lastNameOrder=getOrdering();
+        }
+        if(sort.startsWith("p_")){
+            phoneOrder=getOrdering();
+        }
+    }
+
+    private String getOrdering() {
+        return sort.endsWith("d") ? "desc" : "asc";
     }
 }
