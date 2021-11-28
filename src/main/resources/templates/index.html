@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/add">ADD</a>
+<form method="get">
+    <input name="firstNameSearch" placeholder="Введите Имя" th:value="${select.firstNameSearch}"/>
+    <input name="lastNameSearch" placeholder="Введите Фамилию" th:value="${select.lastNameSearch}"/>
+    <input name="phoneSearch" placeholder="Введите телефон" th:value="${select.phoneSearch}"/>
+    <button> Search</button>
+</form>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Телефон</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each="item : ${list}">
+        <td th:text="${item.firstName}"></td>
+        <td th:text="${item.lastName}"></td>
+        <td th:text="${item.phone}"></td>
+        <td><a th:href="@{/delete/{id}(id=${item.id})}">Delete</a></td>
+        <td><a th:href="@{/edit/{id}(id=${item.id})}">Edit</a></td>
+
+    </tr>
+
+</table>
+
+
+</body>
+</html>

@@ -5,13 +5,17 @@ package ru.botaniqtlt.phonebook.store;
  */
 public class SelectQuery {
 
-    private final Long id;
+    private  Long id;
 
-    private final String firstNameSearch;
+    private  String firstNameSearch;
 
-    private final String lastNameSearch;
+    private  String lastNameSearch;
 
-    private final String phoneSearch;
+    private  String phoneSearch;
+
+    public SelectQuery() {
+        this(null);
+    }
 
     public SelectQuery(Long id) {
         firstNameSearch = null;
@@ -42,5 +46,21 @@ public class SelectQuery {
 
     public String getPhoneSearch() {
         return phoneSearch;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFirstNameSearch(String firstNameSearch) {
+        this.firstNameSearch = firstNameSearch;
+    }
+
+    public void setLastNameSearch(String lastNameSearch) {
+        this.lastNameSearch = lastNameSearch;
+    }
+
+    public void setPhoneSearch(String phoneSearch) {
+        this.phoneSearch = phoneSearch;
     }
 }

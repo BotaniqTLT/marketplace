@@ -12,7 +12,7 @@ import java.util.Stack;
 /**
  * Адаптер для работы с консольным UI
  */
-@Component
+//@Component
 public class ConsoleAdapter  {
 
 

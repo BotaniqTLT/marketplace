@@ -25,7 +25,13 @@ public class RecordStorageDB implements RecordStorage {
     @Override
     public List<PhoneRecord> find(SelectQuery query) {
         ArrayList<PhoneRecord> result = new ArrayList<>();
-        phoneRecordRepository.findAll().forEach(result::add);
+        if (query.getFirstNameSearch() != null || query.getLastNameSearch() != null || query.getPhoneSearch() != null) {
+            phoneRecordRepository.search(query.getLastNameSearch(), query.getFirstNameSearch(), query.getPhoneSearch()).forEach(result::add);
+        } else if (query.getId() == null) {
+            phoneRecordRepository.findAll().forEach(result::add);
+        } else {
+            phoneRecordRepository.findById(query.getId()).ifPresent(result::add);
+        }
         return result;
     }
 
