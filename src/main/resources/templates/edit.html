@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/product/{id}(id=${product.getId()})}" th:object="${product}">
+  <label for="name">Введите название товара </label>
+  <input type="text" th:field="*{name}" id="name"/><br/><br/>
+  <div  style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+  <label for="description">Введите описание товара </label>
+  <input type="text" th:field="*{description}" id="description"/><br/><br/>
+  <div  style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description Error</div>
+
+  <label for="price">Введите цену </label>
+  <input type="text" th:field="*{price}" id="price"/><br/><br/>
+  <div  style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</div>
+
+  <label for="stock">Введите количество</label>
+  <input type="text" th:field="*{stock}" id="stock"/><br/><br/>
+  <div  style="color:red" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Stock Error</div>
+  <br/>
+  <input type="submit" value="update!"/>
+</form>
+</body>
+</html>

@@ -1,3 +1,84 @@
+.container_menu {background-color: black;
+
+    height: 30px;}
+
+.menu_content {
+    color: #ffff;
+    padding: 0 30px 0 0;
+    font-size: 15px;
+}
+
+.logo { height:20%;
+background-color: blue;}
+
+
+.left_menu{
+    float: left;
+    height: 100%;
+    width: 220px;
+    background-color: red;
+}
+
+.ul_gel_lak{
+    display: block;
+    font-size:15px;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+.menu_left_name {
+    list-style-type: none;
+}
+.logo {
+height: 30px;
+}
+
+.content {
+    min-width:600px;
+    min-height:300px;
+    background-color: aqua;
+    overflow: hidden;
+    padding-left: 20px;
+}
+.middle{
+    overflow: hidden;
+}
+.footer {
+    min-height: 100px;
+    background-color: yellowgreen ;
+}
+.catalog_item {
+    float:left;
+    position:relative;
+    margin:0 20px 0 0;
+    background-color: blueviolet;
+    padding: 3px;
+ }
+
+.catalog_row{
+    overflow: hidden;
+    margin:0 0 10px 0;
+}
+div.button1 {
+    background-color: blueviolet;
+    width: 70px; height: 30px;
+    border-radius: 10px;
+    text-align:center;
+}
+.catalog_item img{
+    height: 100px;
+    width: 100px;
+}
+
+
+.show_bd th {
+    text-align:left;
+}
+.hidden{
+display:none;
+}
+
 a.active {
 font-size:20px;
 }

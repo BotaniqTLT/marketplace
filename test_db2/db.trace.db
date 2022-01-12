@@ -1,0 +1,4 @@
+2021-11-29 22:25:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Ошибка преобразования данных при конвертации "'user1' (PHONE_RECORD: ""USER_ID"" BIGINT)"
+Data conversion error converting "'user1' (PHONE_RECORD: ""USER_ID"" BIGINT)"; SQL statement:
+insert into phone_record (id, first_name, last_name, phone, user_id) values (null, ?, ?, ?, ?) [22018-200]

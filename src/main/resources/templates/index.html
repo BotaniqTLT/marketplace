@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/cart.js"></script>
+    <title> ALl product</title>
+</head>
+<body>
+<!--Header-->
+<div class="logo">
+    <div class="container_cart " style="float:right; width:300px;  background-color: #fff">
+        <i class="fas fa-cart-arrow-down" style="font-size:30px;float:left"></i>
+        <div class="empty_cart hidden" style="float:left"> Корзина пуста</div>
+        <div class="full_cart hidden" style="float:left;cursor:pointer;">
+            В корзине <span class="cart_total">  </span> товара <br>
+            На сумму <span class="cart_summ">    </span>
+        </div>
+        <a class="cart" data-empty="Корзина пуста" data-full="В корзине-"></a>
+
+    </div>
+</div>
+
+
+<div class="container_menu">
+
+    <a class="menu_content" href='' title=''>Бренды</a>
+    <a class="menu_content" href='' title=''>Волосы</a>
+    <a class="menu_content" href='' title=''>Ногти</a>
+    <a class="menu_content" href='' title=''>Лицо</a>
+    <a class="menu_content" href='' title=''>Макияж</a>
+    <a class="menu_content" href='' title=''>Тело</a>
+    <a class="menu_content" href='' title=''>Техника</a>
+    <a class="menu_content" href='' title=''>Аксессуары</a>
+    <a class="menu_content" href='' title=''>Тело</a>
+    <a class="menu_content" href='' title=''>Для мужчин </a>
+    <a class="menu_content" href='' title=''>Оборудование</a>
+    <a class="menu_content" href='' title=''>Средства защиты</a>
+
+
+</div>
+<div class="middle">
+    <div class="left_menu">
+        <ul class="ul_gel_lak">
+            <li><a class="header" href="">ГЕЛЬ-ЛАКИ </a>
+                <ul>
+
+                    <li> Art-A основная коллекция</li>
+                    <li> Гель-лаки Art-A серия 5D Cat</li>
+                    <li> Гель-лаки Art-A серия 9D Cat</li>
+                    <li> Гель-лаки Art-A серия Chloe</li>
+                    <li> Гель-лаки Art-A серия Spark</li>
+                    <li> База для гель-лака</li>
+                    <li> Праймеры</li>
+                    <li> Art-A серия Fleur</li>
+                    </li>
+                </ul>
+            <li><a class="header" href=""> ЖИДКОСТИ </a>
+                <ul>
+                    <li> Средства для кутикулы</li>
+                    <li> Жидкости для снятия гель лака</li>
+                    <li> Антисептики</li>
+                    <li> жидкость для </br> обезжиривания ногтей и <br> снятия липкого слоя</li>
+                    <li> Масла для кутикулы</li>
+                    <li> Жидкости для очистки <br> кистей</li>
+                    <li> жидкости для очистки <br> биогеля</li>
+                </ul>
+            </li>
+            <li><a class="header" href="">ДИЗАЙН </a>
+                <ul>
+                    <li> Камифибуки для ногтей</li>
+                    <li> Пудра(втирка) для ногтей</li>
+                    <li> Разное</li>
+                    <li> Пигмент "Металлик" для </br> ногтей</li>
+                    <li> Радужный пигмент для </br> ногтей</li>
+                    <li> Пигмент "Мятный жук" для </br> ногтей</li>
+                    </li>
+                </ul>
+        </ul>
+    </div>
+    <div class="content">
+
+
+        <!-- Контейнер-->
+        <div th:each="product:${product}">
+            <div class="catalog_item">
+
+                <a th:href="@{/product/{id}(id=${product.getId()})}"
+                   th:text="${product.getName() +','+product.getDescription()+','+product.getPrice()}"> </a>
+                <img th:src="${product.getImage()}"/>
+                <a th:href="@{/product/{id}/cart(id=${product.getId()})}"> КУПИТЬ </a>
+                <!--        <a href="/product/new"> </a>-->
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+</div>
+    <div class="footer">
+
+        <b th:if="${list.totalPages > 0}" class="pagination"
+           th:each="pageNumber : ${pageNumbers}">
+            <a th:href="@{/product/(size=${list.size}, page=${pageNumber})}"
+               th:text=${pageNumber}
+               th:class="${pageNumber==list.number + 1} ? active"></a>
+        </b>
+    </div>
+
+
+</body>
+</html>

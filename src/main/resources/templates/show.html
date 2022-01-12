@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>product</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/cart.js"></script>
+</head>
+<body>
+<p th:text="${product.getName()}">VALUE</p>
+<p th:text="${product.getId()}">VALUE</p>
+<p th:text="${product.getDescription()}">VALUE</p>
+<p th:text="${product.getPrice()}">VALUE</p>
+<p th:text="${product.getStock()}">VALUE</p>
+
+<a th:href="@{/product/{id}/edit(id=${product.getId()})}"> Edit</a>
+<div class="cart_add" th:attr="data-id=${product.getId()}">
+    <button class="minus">-</button>
+    <input value="1" size="2"/>
+    <button class="plus">+</button>
+    <button class="buy">КУПИТЬ</button>
+    <button class="clear"> ОЧИСТИТЬ </button>
+    <button class="remove"> удалить товар </button>
+</div>
+
+<!--<form th:method="DELETE" th:action="@{/product/{id}(id=${product.getId()})}">-->
+<!--    <input type="submit" value="Delete"/>-->
+</form>
+</body>
+</html>

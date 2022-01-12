@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/product}" th:object="${product}">
+  <label for="name">Введите название товара </label>
+  <div  style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+  <input type="text" th:field="*{name}" id="name"/><br/><br/>
+
+  <label for="description">Введите описание товара </label>
+  <div  style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</div>
+  <input type="text" th:field="*{description}" id="description"/><br/><br/>
+
+  <label for="price">Введите цену </label>
+  <div  style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name Error</div>
+  <input type="text" th:field="*{price}" id="price"/><br/><br/>
+
+  <label for="stock">Введите количество</label>
+  <div  style="color:red" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Name Error</div>
+  <input type="text" th:field="*{stock}" id="stock"/><br/><br/>
+
+  <br/>
+  <input type="submit" value="Create!"/>
+</form>
+</body>
+</html>
